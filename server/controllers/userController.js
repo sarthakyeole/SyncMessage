@@ -20,7 +20,7 @@ export const signup = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const newUser = await User.create({
-            fullName,
+            fullname,
             email,
             password: hashedPassword,
             bio
@@ -83,20 +83,20 @@ export const checkAuth = (req, res) => {
 // Controller to update user profile details
 export const updateProfile = async (req, res) => {
     try{
-        const { profilePic, bio, fullName } = req.bddy;
+        const { profilePic, bio, fullname } = req.bddy;
 
         const userId = req.user._id;
         let updatedUser;
 
         if(!profilePic) {
-            updatedUser = await User.findByIdAndUpdate(userId, {bio, fullName},
+            updatedUser = await User.findByIdAndUpdate(userId, {bio, fullname},
                 {new: true}
             );
         }
         else {
             const upload = await cloudinary.uploader.upload(profilePic);
 
-            updatedUser = await User.findByIdAndUpdate(userId, {profilePic: upload.secure_url, bio, fullName},  {new: true});
+            updatedUser = await User.findByIdAndUpdate(userId, {profilePic: upload.secure_url, bio, fullname},  {new: true});
         }
         res.json({success: true, userData: updatedUser});
     } catch (error) {
