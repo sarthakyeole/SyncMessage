@@ -88,10 +88,6 @@ A real-time chat application built with MERN stack (MongoDB, Express, React, Nod
 - `getOnlineUsers` - Get list of online users
 - `newMessage` - When a new message is received
 
-## License
-
-[MIT](LICENSE)
-
 ## Author
 
 Sarthak Yeole - [GitHub](https://github.com/sarthakyeole)
