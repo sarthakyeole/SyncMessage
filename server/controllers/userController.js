@@ -45,24 +45,27 @@ export const signup = async (req, res) => {
 
 // Controller to login a user
 export const login = async (req, res) => {
-    
-    try{
+    try {
         const { email, password } = req.body;
         const userData = await User.findOne({email});
-
+        
+        // Add this check
+        if (!userData) {
+            return res.json({success: false, message: "User not found"});
+        }
+        
         const isPasswordCorrect = await bcrypt.compare(password, userData.password);
-
+        
         if(!isPasswordCorrect) {
             return res.json({success: false, message: "Invalid Credentials"});
         }
-
+        
         const token = generateToken(userData._id);
-
+        
         return res.json({
             success: true, 
             userData, token, message: "Login successful"
         });
-
     } catch(error) {
         console.log(error.message);
         res.json({
@@ -83,7 +86,7 @@ export const checkAuth = (req, res) => {
 // Controller to update user profile details
 export const updateProfile = async (req, res) => {
     try{
-        const { profilePic, bio, fullname } = req.bddy;
+        const { profilePic, bio, fullname } = req.body;
 
         const userId = req.user._id;
         let updatedUser;
