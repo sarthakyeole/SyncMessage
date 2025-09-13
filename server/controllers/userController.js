@@ -86,20 +86,20 @@ export const checkAuth = (req, res) => {
 // Controller to update user profile details
 export const updateProfile = async (req, res) => {
     try{
-        const { profilePic, bio, fullname } = req.body;
+        const { profilePic, bio, fullName } = req.body;
 
         const userId = req.user._id;
         let updatedUser;
 
         if(!profilePic) {
-            updatedUser = await User.findByIdAndUpdate(userId, {bio, fullname},
+            updatedUser = await User.findByIdAndUpdate(userId, {bio, fullName},
                 {new: true}
             );
         }
         else {
             const upload = await cloudinary.uploader.upload(profilePic);
 
-            updatedUser = await User.findByIdAndUpdate(userId, {profilePic: upload.secure_url, bio, fullname},  {new: true});
+            updatedUser = await User.findByIdAndUpdate(userId, {profilePic: upload.secure_url, bio, fullName},  {new: true});
         }
         res.json({success: true, userData: updatedUser});
     } catch (error) {
