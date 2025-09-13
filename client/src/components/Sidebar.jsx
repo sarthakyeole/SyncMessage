@@ -11,7 +11,7 @@ const Sidebar = ({}) => {
     getUsers,
     users,
     selectedUser,
-    setselectedUser,
+    setSelectedUser,
     unseenMessages,
     setUnseenMessages,
   } = useContext(ChatContext);
@@ -24,7 +24,7 @@ const Sidebar = ({}) => {
 
   const filteredUsers = input
     ? users.filter((user) =>
-        user.fullName.toLowerCase().includes(input.toLowerCase())
+        user.fullName && user.fullName.toLowerCase().includes(input.toLowerCase())
       )
     : users;
 
@@ -77,7 +77,7 @@ const Sidebar = ({}) => {
         {filteredUsers.map((user, index) => (
           <div
             onClick={() => {
-              setselectedUser(user);
+              setSelectedUser(user);
               setUnseenMessages((prev) => ({ ...prev, [user._id]: 0 }));
             }}
             key={index}
