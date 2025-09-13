@@ -135,14 +135,14 @@ const ChatContainer = () => {
           />
           <input
             onChange={handleSendImage}
+            className="hidden"
             type="file"
-            id="image"
+            id="msgImage"
+            name="msgImage"
             accept="image/png, image/jpeg"
-            hidden
           />
-          <label htmlFor="image">
+          <label htmlFor="msgImage">
             <img
-              onClick={handleSendMessage}
               src={assets.gallery_icon}
               alt=""
               className="w-5 mr-2 cursor pointer"
