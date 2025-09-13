@@ -2,7 +2,7 @@
 
 A real-time chat application built with MERN stack (MongoDB, Express, React, Node.js) and Socket.IO that allows users to communicate instantly.
 
-![Quick Chat Demo]()
+[Quick Chat Demo](https://sync-message-beta.vercel.app)
 
 ## Features
 
